@@ -18,7 +18,7 @@ for i in colours:
 user = screen.textinput(title="Make your bet",prompt="Pick your Color : ")
 print(user)
 
-if user:
+if user in colours:
     is_game_on = True
 
 while is_game_on:
