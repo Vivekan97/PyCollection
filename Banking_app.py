@@ -61,11 +61,11 @@ def main():
     # To create the instances and storing it
     user_methods = {}
     for i in users.items():
-        user_methods[i[1]] = Account(i[0], i[1])
+        user_methods[i[0]+i[1]] = Account(i[0], i[1])
 
     # For unique usernames their corresponding instances are stored into user variable
     for j in final:
-        user = user_methods[j[2]]
+        user = user_methods[j[1]+j[2]]
         # Processing the loan method
         if j[0].lower() == 'loan':
             user.loan(int(j[3]), int(j[4]), int(j[5]))
