@@ -1,5 +1,6 @@
+import sys
 def main():
-    
+    input_file = sys.argv[1]
 
     import math
 
@@ -43,13 +44,9 @@ def main():
 
     # Codeblock to capture the inputs
     print("Enter/Paste your content. Ctrl-D or Ctrl-Z ( windows ) to save it.")
-    contents = []
-    while True:
-        try:
-            line = input()
-        except EOFError:
-            break
-        contents.append(line)
+    j = open(input_file)
+    content = [j.read()]
+    contents = content[0].split('\n')
 
     # Sending the users data into a list
     final = []
