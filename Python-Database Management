@@ -1,0 +1,46 @@
+import pandas as pd
+import re,mysql.connector
+
+mydb = mysql.connector.connect(
+
+    host="VIVEKAN",
+    user="newuser",
+    password="1234",
+    database="incubate"
+)
+
+myc = mydb.cursor()
+
+df = pd.read_csv("initial.csv")
+data = df.to_string(index=False)
+
+res = re.findall(r"[\w']+", data)
+i = 0
+new = []
+
+while i < len(res):
+    new.append(res[i:i + 11])
+    i += 11
+
+for i in range(1, len(new)):
+
+    if new[i][0] == 'D':
+
+        myc.execute(f'''INSERT INTO patients (Name,Cust_I,Open_Dt,Consul_Dt,VAC_ID,DR_Name,State,Country,DOB,FLAG) 
+                    values ("{new[i][1]}",
+                    {new[i][2]},'{new[i][3][0:4] + "-" + new[i][3][4:6] + "-" + new[i][3][6:]}',
+                    '{new[i][4][0:4] + "-" + new[i][4][4:6] + "-" + new[i][4][6:]}',"{new[i][5]}","{new[i][6]}",
+                    "{new[i][7]}","{new[i][8]}",'{new[i][9][4:] + "-" + new[i][9][2:4] + "-" + new[i][9][0:2]}',
+                    "{new[i][10]}");'''
+                    )
+        print((f'''INSERT INTO patients (Name,Cust_I,Open_Dt,Consul_Dt,VAC_ID,DR_Name,State,Country,DOB,FLAG) 
+                    values ("{new[i][1]}",
+                    {new[i][2]},'{new[i][3][0:4] + "-" + new[i][3][4:6] + "-" + new[i][3][6:]}',
+                    '{new[i][4][0:4] + "-" + new[i][4][4:6] + "-" + new[i][4][6:]}',"{new[i][5]}","{new[i][6]}",
+                    "{new[i][7]}","{new[i][8]}",'{new[i][9][4:] + "-" + new[i][9][2:4] + "-" + new[i][9][0:2]}',
+                    "{new[i][10]}");'''
+                    ))
+        mydb.commit()
+
+    for i in myc:
+        print(i)
