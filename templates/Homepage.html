@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>TransLiteration</title>
+
+<body style="background-color:powderblue;">
+
+
+    <h1>Welcome to the main page of Transliteration</h1>
+    <p title="guide1">please type in your {{ling}} text separated by space.</p>
+
+    <br>
+    <br>
+    <!-- <form action="/action_page.php">
+
+        <textarea name="message" rows="15" cols="40"></textarea>
+        <br>
+        <label for="language">Choose a language:</label>
+        <select id="language" name="language">
+            <option value="tamil">Tamil</option>
+            <option value="kannada">Kannada</option>
+
+            <option value="hindi">Hindi</option>
+            <option value="malayalam">Malayalam</option>
+            <option value="punjabi">Punjabi</option>
+            <option value="sanskrit">Sanskrit</option>
+            <option value="oriya">Oriya</option>
+        </select>
+        <input type="submit">
+    </form> -->
+
+    <!-- <button onclick="document.location='trans'">Transliterate</button> -->
+    <br>
+    <br>
+
+    <form action="{{ url_for('addRegion') }}" method="post">
+        Type your text here: <input type="text" name="projectFilePath"><br>
+        <!-- Choose your language: <input type="text" name="langchooser"><br> -->
+        <select id="language" name="language">
+            <option value="tamil">Tamil</option>
+            <option value="kannada">Kannada</option>
+            <option value="english">English</option>
+            <option value="hindi">Hindi</option>
+            <option value="malayalam">Malayalam</option>
+            <option value="punjabi">Punjabi</option>
+            <option value="sanskrit">Sanskrit</option>
+            <option value="oriya">Oriya</option>
+        </select>
+        <br><br><input type="submit" value="Submit"><br>
+    </form>
+    <br><br>
+    <div class="results" color='red'>
+        The transliterated text is : <br>{{prediction}}
+        
+    </div>
+    <br>
+    <br>
+    <h1>{{result}}</h1>
+
+</body>
+<footer>{%if is_available%}
+    <p>The site is up and running</p>
+    {%else%}
+    <p>The site is Down. Come back later. </p>
+    {%endif%}
+</footer>
+
+</html>
