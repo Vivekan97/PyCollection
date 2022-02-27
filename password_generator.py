@@ -15,20 +15,17 @@ print(len(letters),len(numbers),len(symbols))
 
 part1 = ""
 for let in range(nr_letters):
-    v = random.choice(letters)
-    part1 += v
+    part1 = random.choice(letters)
 
 
 part2 = ""
 for sym in range(nr_symbols):
-    s = random.choice(symbols)
-    part2 += s
+    part2 += random.choice(symbols)
 
 
 part3 = ""
 for num in range(nr_numbers):
-    t = random.choice(numbers)
-    part3 += t
+    part3 += random.choice(numbers)
 
 
 final = str(part1) + str(part2) + str(part3)
